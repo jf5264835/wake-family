@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1785730962439,
+      "tag": "0000_bitter_centennial",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1785900182096,
+      "tag": "0001_damp_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1785902425583,
+      "tag": "0002_cultured_lucky_pierre",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+.git
+.github
+.sites-runtime
+.wrangler
+node_modules
+dist
+coverage
+data
+.selfhost
+.env
+.env.*
+!.env.example
+*.htpasswd
+npm-debug.log*
