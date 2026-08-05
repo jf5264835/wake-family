@@ -1,13 +1,14 @@
 services:
   app:
+    image: ${APP_IMAGE:-wake-family:local}
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
-      - .env
+      - ${APP_ENV_FILE:-.env}
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:${HOST_PORT:-3000}:3000"
     volumes:
       - wake-family-data:/data
 
