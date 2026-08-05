@@ -23,5 +23,5 @@ RUN chmod +x ./scripts/selfhost-entrypoint.sh
 
 VOLUME ["/data"]
 EXPOSE 3000
-
+LABEL org.opencontainers.image.source="https://github.com/jf5264835/wake-family"
 CMD ["./scripts/selfhost-entrypoint.sh"]
