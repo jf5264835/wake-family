@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     email: auth.user.email,
     username: null,
     name: auth.user.displayName,
-    authSource: "hosted",
+    authSource: "saml",
     enabled: true,
     createdAt: "",
     updatedAt: "",
