@@ -12,6 +12,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV SELFHOST_DATA_DIR=/data
+LABEL org.opencontainers.image.source="https://github.com/jf5264835/wake-family"
 
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
