@@ -75,9 +75,9 @@ jobs:
 
       - name: Deploy development
         env:
-          DEV_HOST: ${{ vars.DEV_HOST }}
-          DEV_USER: ${{ vars.DEV_USER }}
-          DEV_SSH_PORT: ${{ vars.DEV_SSH_PORT }}
+          DEV_HOST: ${{ secrets.DEV_HOST }}
+          DEV_USER: ${{ secrets.DEV_USER }}
+          DEV_SSH_PORT: ${{ secrets.DEV_SSH_PORT }}
         run: |
           ssh_port="${DEV_SSH_PORT:-22}"
 
