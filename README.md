@@ -2,10 +2,7 @@
 
 Wake Church's family registration and configurable form application. The public flow is designed for Sunday kiosks as well as phones, tablets, and desktop browsers. Administrative tools manage transactions, retry Planning Center submissions, configure branding and built-in registration fields, create custom forms, manage access groups, and inspect audit history.
 
-The repository supports two deployment paths from the same source:
-
-- ChatGPT Sites, using the checked-in `.openai/hosting.json` D1/R2 bindings.
-- Self-hosted Linux/Docker, using the local Workers-compatible runtime and a persistent `/data` volume.
+The repository supports Linux/Docker deployment using a local Workers-compatible runtime and a persistent `/data` volume.
 
 ## What is implemented
 
@@ -53,10 +50,10 @@ See [docs/SELF_HOSTING.md](docs/SELF_HOSTING.md) for the production checklist, r
 | `PCO_SECRET` | For PCO sync | Planning Center Personal Access Token secret. |
 | `GOOGLE_MAPS_API_KEY` | No | Google Places address autocomplete. Manual addresses remain available without it. |
 | `ADMIN_EMAILS` | Bootstrap access | Comma-separated identities that bypass group permissions as server administrators. |
-| `SELF_HOST_AUTH_EMAIL_HEADER` | Self-hosted admin | Header name supplied by a trusted authenticating reverse proxy. |
+| `SELF_HOST_AUTH_EMAIL_HEADER` | Admin SAML | Header name supplied by a trusted authenticating reverse proxy. |
 | `SELF_HOST_AUTH_NAME_HEADER` | No | Optional trusted display-name header. |
-| `SELFHOST_DATA_DIR` | Self-hosted | Persistent local runtime directory. Defaults to `/data`. |
-| `PORT` | No | Self-hosted listen port. Defaults to `3000`. |
+| `SELFHOST_DATA_DIR` | Runtime | Persistent local runtime directory. Defaults to `/data`. |
+| `PORT` | No | Listen port. Defaults to `3000`. |
 
 Secrets belong in the runtime environment, not in Git.
 
@@ -69,7 +66,7 @@ Secrets belong in the runtime environment, not in Git.
 | `db/` | Drizzle schema and database binding. |
 | `drizzle/` | Ordered SQL migrations. Commit every migration. |
 | `public/` | Git-safe static assets, including Wake brand marks. |
-| `worker/` | Workers/Sites runtime entry. |
+| `worker/` | Worker runtime entry. |
 | `tests/` | Automated tests. |
 | `docs/` | Architecture, operations, security, PCO, and contributor documentation. |
 
@@ -84,7 +81,7 @@ When the data model changes, update `db/schema.ts`, generate a migration with `n
 
 ## Important authentication status
 
-The hosted deployment authenticates administrators at the hosting boundary. The self-hosted build can consume identity from a trusted reverse proxy through `SELF_HOST_AUTH_EMAIL_HEADER`. The database already models local and SAML account sources and group mappings, but application-owned password login and direct SAML protocol handling are not implemented yet. Do not treat those two admin toggles as an authentication provider by themselves. See [docs/AUTHENTICATION.md](docs/AUTHENTICATION.md).
+The admin portal consumes SAML identity from a trusted reverse proxy through `SELF_HOST_AUTH_EMAIL_HEADER`. The local database stores users, groups, and permissions. Direct application-owned password login and SAML protocol handling are not implemented; the SAML boundary must be provided by the reverse proxy. See [docs/AUTHENTICATION.md](docs/AUTHENTICATION.md).
 
 ## Documentation
 

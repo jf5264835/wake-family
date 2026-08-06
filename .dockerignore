@@ -1,6 +1,6 @@
 .git
 .github
-.sites-runtime
+.wake-runtime
 .wrangler
 node_modules
 dist

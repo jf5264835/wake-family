@@ -4,7 +4,7 @@
 
 The application is a React 19 / Next.js App Router application built with Vinext. HTTP route handlers and server-rendered pages share one application bundle. Durable relational state uses a SQLite-compatible D1 API through Drizzle ORM. Uploaded branding assets use an R2-compatible object bucket.
 
-The same source is packaged for ChatGPT Sites and for the local Workers-compatible self-host runtime.
+The application is packaged for the local Workers-compatible runtime.
 
 ## Trust boundaries
 
@@ -30,7 +30,7 @@ The same source is packaged for ChatGPT Sites and for the local Workers-compatib
 
 `worker/index.ts` captures runtime bindings and makes them request-local with `AsyncLocalStorage`. Application modules obtain bindings through `lib/runtime-env.ts`; they do not load secrets directly from the browser or public configuration.
 
-The Sites manifest remains checked in because it is part of the hosted deployment. `wrangler.selfhost.jsonc` is separate and contains no credentials. It declares only local binding names and non-secret runtime shape.
+`wrangler.selfhost.jsonc` contains no credentials. It declares only local binding names and non-secret runtime shape.
 
 ## Configuration storage
 

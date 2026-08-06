@@ -17,4 +17,4 @@ Before exposing a self-hosted instance publicly, review the reverse-proxy identi
 
 ## Known gap
 
-Direct application-owned local-password authentication and direct SAML protocol handling are not implemented. The admin data model has placeholders/policy settings for them, but production must use the hosted identity boundary or a trusted self-hosted authentication proxy until those providers are implemented and reviewed.
+Direct application-owned local-password authentication and direct SAML protocol handling are not implemented. The admin data model has placeholders/policy settings for them, but production must use a trusted SAML authentication proxy until those providers are implemented and reviewed.

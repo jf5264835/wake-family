@@ -1,5 +1,5 @@
 import { eq, inArray } from "drizzle-orm";
-import { getChatGPTUser } from "../app/chatgpt-auth";
+import { getAdminIdentity } from "./admin-identity";
 import { getDb } from "../db";
 import { adminGroupMembers, adminGroups, adminUsers } from "../db/schema";
 import { getRuntimeEnv } from "./runtime-env";
@@ -55,7 +55,7 @@ function configuredAdmins() {
 }
 
 export async function getAdminUser(): Promise<AdminAccessUser | null> {
-  const identity = await getChatGPTUser();
+  const identity = await getAdminIdentity();
   if (!identity) return null;
   const email = identity.email.toLowerCase();
   if (configuredAdmins().includes(email)) return { id: `bootstrap:${email}`, email, displayName: identity.displayName, isAdmin: true, permissions: fullPermissions(), groupIds: [] };
