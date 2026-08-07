@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - develop
+
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
   workflow_dispatch:
 
 permissions:
@@ -19,6 +26,10 @@ env:
 
 jobs:
   deploy:
+    if: >
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.merged == true
+
     name: Build and deploy development
     runs-on: ubuntu-latest
 
